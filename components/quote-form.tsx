@@ -1,8 +1,6 @@
 "use client"
 
-import type React from "react"
-
-import { useState } from "react"
+import React, { useRef, useState, FormEvent } from 'react';
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -10,6 +8,15 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Phone, Mail, MapPin } from "lucide-react"
+import ReCAPTCHA from 'react-google-recaptcha';
+
+interface FormData {
+  name: string;
+  email: string;
+  message: string;
+  token: string;
+}
+
 
 export default function QuoteForm() {
   const [formData, setFormData] = useState({
@@ -20,7 +27,10 @@ export default function QuoteForm() {
     services: [] as string[],
     message: "",
   })
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
+  const [status, setStatus] = useState<string>("");
 
+  
   const services = [
     "Gutter Cleaning",
     "Window Cleaning",
@@ -50,6 +60,30 @@ export default function QuoteForm() {
     console.log("Form submitted:", formData)
     alert("Thank you for your quote request! We'll contact you within 24 hours.")
   }
+
+  const handleSubmitContact = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const form = e.currentTarget;
+    const token = await recaptchaRef.current?.executeAsync();
+    recaptchaRef.current?.reset();
+
+    const formData: FormData = {
+      name: (form.elements.namedItem('name') as HTMLInputElement).value,
+      email: (form.elements.namedItem('email') as HTMLInputElement).value,
+      message: (form.elements.namedItem('message') as HTMLTextAreaElement).value,
+      token: token ?? "",
+    };
+
+    const res = await fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData),
+    });
+
+    const result = await res.json();
+    setStatus(result.message);
+  };
 
   return (
     <section id="quote" className="py-20 bg-white">
@@ -157,7 +191,9 @@ export default function QuoteForm() {
                 <CardTitle>Contact Information</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="flex items-center space-x-3">
+
+
+                {/* <div className="flex items-center space-x-3">
                   <Phone className="h-5 w-5 text-blue-600" />
                   <div>
                     <p className="font-medium">Phone</p>
@@ -177,7 +213,23 @@ export default function QuoteForm() {
                     <p className="font-medium">Service Areas</p>
                     <p className="text-gray-600">All major cities across Australia</p>
                   </div>
-                </div>
+                </div> */}
+
+                <form onSubmit={handleSubmitContact} className="flex flex-col space-y-4">
+                  <input type="text" name="name" placeholder="Your Name" required className="p-2 border" />
+                  <input type="email" name="email" placeholder="Your Email" required className="p-2 border" />
+                  <textarea name="message" placeholder="Your Message" required className="p-2 border" />
+                  
+                  <ReCAPTCHA
+                    ref={recaptchaRef}
+                    size="invisible"
+                    sitekey="6LeNN1QrAAAAAD6CEm5WmnRbkALBf4fmxkXFv22n"
+                  />
+
+                  <button type="submit" className="bg-blue-500 text-white p-2 rounded">Send</button>
+
+                  <div>{status}</div>
+                </form>
               </CardContent>
             </Card>
 
