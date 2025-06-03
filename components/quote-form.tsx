@@ -223,7 +223,7 @@ export default function QuoteForm() {
                   <ReCAPTCHA
                     ref={recaptchaRef}
                     size="invisible"
-                    sitekey="6LeNN1QrAAAAAD6CEm5WmnRbkALBf4fmxkXFv22n"
+                    sitekey="6Ld4OFQrAAAAANYXbdZVxTLatBEwFMjk709td2fB"
                   />
 
                   <button type="submit" className="bg-blue-500 text-white p-2 rounded">Send</button>
