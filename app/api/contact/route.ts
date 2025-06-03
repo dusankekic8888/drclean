@@ -52,7 +52,7 @@ export async function POST(req: NextRequest) {
       
     await resend.emails.send({
     from: `${name} <${email}>`,
-    to: 'ben@eronka.com',
+    to: 'dungnguyen92204@gmail.com',
     subject: 'New Contact Form Submission',
     html: `<p><b>Name:</b> ${name}</p>
             <p><b>Email:</b> ${email}</p>
