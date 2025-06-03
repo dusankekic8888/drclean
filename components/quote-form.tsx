@@ -65,8 +65,11 @@ export default function QuoteForm() {
     e.preventDefault();
 
     const form = e.currentTarget;
-    const token = await recaptchaRef.current?.executeAsync();
-    recaptchaRef.current?.reset();
+    const token = recaptchaRef.current?.getValue();
+    if (!token) {
+      setStatus("Please verify captcha.");
+      return;
+    }
 
     const formData: FormData = {
       name: (form.elements.namedItem('name') as HTMLInputElement).value,
@@ -83,6 +86,7 @@ export default function QuoteForm() {
 
     const result = await res.json();
     setStatus(result.message);
+    recaptchaRef.current?.reset();
   };
 
   return (
@@ -222,8 +226,7 @@ export default function QuoteForm() {
                   
                   <ReCAPTCHA
                     ref={recaptchaRef}
-                    size="invisible"
-                    sitekey="6Ld4OFQrAAAAANYXbdZVxTLatBEwFMjk709td2fB"
+                    sitekey="6LeUOlQrAAAAABLkj_sFD8Od-VsvSa9at1N0-_77"
                   />
 
                   <button type="submit" className="bg-blue-500 text-white p-2 rounded">Send</button>
