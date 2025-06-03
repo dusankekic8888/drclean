@@ -40,13 +40,23 @@ export async function POST(req: NextRequest) {
     }
 
     // Send email via Resend
+    // await resend.emails.send({
+    //   from: 'Contact Form <onboarding@resend.dev>',
+    //   to: 'ben@eronka.com',
+    //   subject: 'New Contact Form Submission',
+      
+    //   html: `<p><b>Name:</b> ${name}</p>
+    //          <p><b>Email:</b> ${email}</p>
+    //          <p><b>Message:</b> ${message}</p>`,
+      // });
+      
     await resend.emails.send({
-      from: 'Contact Form <onboarding@resend.dev>',
-      to: 'ben@eronka.com',
-      subject: 'New Contact Form Submission',
-      html: `<p><b>Name:</b> ${name}</p>
-             <p><b>Email:</b> ${email}</p>
-             <p><b>Message:</b> ${message}</p>`,
+    from: `${name} <${email}>`,
+    to: 'ben@eronka.com',
+    subject: 'New Contact Form Submission',
+    html: `<p><b>Name:</b> ${name}</p>
+            <p><b>Email:</b> ${email}</p>
+            <p><b>Message:</b> ${message}</p>`,
     });
 
     return NextResponse.json({ message: 'Email sent successfully' });
