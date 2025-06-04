@@ -3,25 +3,25 @@ import { Card, CardContent } from "@/components/ui/card"
 
 const galleryImages = [
   {
-    src: "/images/before-after-gutter.png",
+    src: "/images/action-gutter-transformation.png",
     alt: "Before and after gutter cleaning results",
     title: "Gutter Transformation",
     description: "Complete debris removal and restoration",
   },
   {
-    src: "/images/clean-windows-result.png",
+    src: "/images/action-window-perfection.png",
     alt: "Crystal clear windows after drone cleaning",
     title: "Window Perfection",
     description: "Streak-free, professional finish",
   },
   {
-    src: "/images/solar-panel-cleaning.png",
+    src: "/images/action-solar-efficiency.png",
     alt: "Solar panels being cleaned by drone",
     title: "Solar Efficiency",
-    description: "Maximizing energy output",
+    description: "Maximising energy output",
   },
   {
-    src: "/images/pressure-washing-drone.png",
+    src: "/images/action-surface-restoration.png",
     alt: "Pressure washing with drone technology",
     title: "Surface Restoration",
     description: "Powerful cleaning for tough stains",

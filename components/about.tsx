@@ -15,7 +15,7 @@ export default function About() {
               commercial properties.
             </p>
             <p className="text-lg text-gray-600 mb-6">
-              Founded by cleaning professionals who recognized the need for safer, more efficient cleaning methods,
+              Founded by cleaning professionals who Recognised the need for safer, more efficient cleaning methods,
               we've invested in cutting-edge drone technology to serve customers across Australia.
             </p>
             <div className="grid grid-cols-2 gap-6">
@@ -28,14 +28,14 @@ export default function About() {
               <div>
                 <h4 className="font-semibold text-gray-900 mb-2">Advanced Equipment</h4>
                 <p className="text-gray-600">
-                  Professional-grade drones equipped with specialized cleaning attachments.
+                  Professional-grade drones equipped with specialised cleaning attachments.
                 </p>
               </div>
             </div>
           </div>
           <div className="relative">
             <Image
-              src="/images/team-with-drone.png"
+              src="/images/leading-australia-dron.png"
               alt="DrClean professional team with advanced drone cleaning equipment"
               width={600}
               height={500}

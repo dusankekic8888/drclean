@@ -14,7 +14,7 @@ export default function Hero() {
             </h1>
             <p className="text-xl text-gray-600 mt-6 leading-relaxed">
               Revolutionary drone technology for safe, efficient cleaning of gutters, windows, skylights, solar panels,
-              pressure washing, and specialized cleaning tasks. No ladders, no risk, just pristine results.
+              pressure washing, and specialised cleaning tasks. No ladders, no risk, just pristine results.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
               <Button size="lg" asChild>
@@ -41,7 +41,7 @@ export default function Hero() {
           </div>
           <div className="relative">
             <Image
-              src="/images/drone-cleaning-hero.png"
+              src="/images/main.png"
               alt="Professional drone cleaning service in action cleaning building exterior"
               width={600}
               height={600}

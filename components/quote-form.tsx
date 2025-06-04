@@ -95,7 +95,7 @@ export default function QuoteForm() {
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Get Your Free Quote Today</h2>
           <p className="text-xl text-gray-600">
-            Ready to experience the future of cleaning? Contact us for a personalized quote.
+            Ready to experience the future of cleaning? Contact us for a Personalised quote.
           </p>
         </div>
 
@@ -226,7 +226,8 @@ export default function QuoteForm() {
                   
                   <ReCAPTCHA
                     ref={recaptchaRef}
-                    sitekey="6LeUOlQrAAAAABLkj_sFD8Od-VsvSa9at1N0-_77"
+                    //sitekey="6LeUOlQrAAAAABLkj_sFD8Od-VsvSa9at1N0-_77"
+                    sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
                   />
 
                   <button type="submit" className="bg-blue-500 text-white p-2 rounded">Send</button>

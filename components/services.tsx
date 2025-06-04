@@ -9,7 +9,7 @@ const services = [
     description:
       "Complete gutter cleaning and debris removal using precision drone technology. Prevent water damage and maintain proper drainage.",
     features: ["Debris removal", "Downspout clearing", "Damage inspection", "Before/after photos"],
-    image: "/images/gutter-cleaning-drone.png",
+    image: "/images/service-gutter-cleaning.png",
   },
   {
     icon: Droplets,
@@ -17,7 +17,7 @@ const services = [
     description:
       "Crystal clear windows for residential and commercial properties. Reach high-rise windows safely without scaffolding.",
     features: ["Streak-free finish", "High-rise access", "Eco-friendly solutions", "Regular maintenance"],
-    image: "/images/window-cleaning-drone.png",
+    image: "/images/service-window-cleaning.png",
   },
   {
     icon: Sparkles,
@@ -25,15 +25,15 @@ const services = [
     description:
       "Restore natural light with professional skylight cleaning. Remove dirt, moss, and debris for maximum brightness.",
     features: ["Moss removal", "Seal inspection", "Light restoration", "Weather protection"],
-    image: "/images/clean-windows-result.png",
+    image: "/images/service-skylight-cleaning.png",
   },
   {
     icon: Sun,
     title: "Solar Panel Cleaning",
     description:
-      "Maximize energy efficiency with regular solar panel maintenance. Remove dust, bird droppings, and environmental buildup.",
+      "Maximise energy efficiency with regular solar panel maintenance. Remove dust, bird droppings, and environmental buildup.",
     features: ["Efficiency boost", "Gentle cleaning", "Performance monitoring", "Warranty safe"],
-    image: "/images/solar-panel-cleaning.png",
+    image: "/images/service-solar-panel-cleaning.png",
   },
   {
     icon: Zap,
@@ -41,15 +41,15 @@ const services = [
     description:
       "High-pressure cleaning for driveways, patios, building exteriors, and hard-to-reach surfaces using drone-mounted equipment.",
     features: ["Surface restoration", "Mold removal", "Stain elimination", "Commercial grade"],
-    image: "/images/pressure-washing-drone.png",
+    image: "/images/service-pressure-washing.png",
   },
   {
     icon: Settings,
     title: "Other Services",
     description:
-      "Custom cleaning solutions for unique requirements. From roof cleaning to specialized exterior maintenance tasks.",
-    features: ["Custom solutions", "Specialized equipment", "Flexible approach", "Expert consultation"],
-    image: "/images/before-after-gutter.png",
+      "Custom cleaning solutions for unique requirements. From roof cleaning to specialised exterior maintenance tasks.",
+    features: ["Custom solutions", "Specialised equipment", "Flexible approach", "Expert consultation"],
+    image: "/images/service-other-services.png",
   },
 ]
 

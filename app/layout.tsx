@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "DrClean.com.au - Professional Drone Cleaning Services Australia",
   description:
-    "Expert drone cleaning services for gutters, windows, skylights, solar panels, pressure washing and specialized cleaning across Australia. Safe, efficient, and affordable cleaning solutions using advanced drone technology.",
+    "Expert drone cleaning services for gutters, windows, skylights, solar panels, pressure washing and specialised cleaning across Australia. Safe, efficient, and affordable cleaning solutions using advanced drone technology.",
   keywords:
     "drone cleaning, gutter cleaning, window cleaning, skylight cleaning, solar panel cleaning, pressure washing, Australia, professional cleaning services, exterior cleaning",
   authors: [{ name: "DrClean Australia" }],
