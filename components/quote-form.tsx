@@ -17,7 +17,23 @@ interface FormData {
   token: string;
 }
 
+const servicesOptions = [
+  "Gutter Cleaning",
+  "Window Cleaning",
+  "Skylight Cleaning",
+  "Solar Panel Cleaning",
+  "Pressure Washing",
+  "Other Services"
+];
 
+const services = [
+  "Gutter Cleaning",
+  "Window Cleaning",
+  "Skylight Cleaning",
+  "Solar Panel Cleaning",
+  "Pressure Washing",
+  "Other Services",
+]
 export default function QuoteForm() {
   const [formData, setFormData] = useState({
     name: "",
@@ -26,33 +42,78 @@ export default function QuoteForm() {
     address: "",
     services: [] as string[],
     message: "",
+    token: "" as string | null
   })
   const recaptchaRef = useRef<ReCAPTCHA>(null);
   const [status, setStatus] = useState<string>("");
 
-  
-  const services = [
-    "Gutter Cleaning",
-    "Window Cleaning",
-    "Skylight Cleaning",
-    "Solar Panel Cleaning",
-    "Pressure Washing",
-    "Other Services",
-  ]
-
+  const [servicesStatus, setServiceStatus] = useState<string>("");
   const handleServiceChange = (service: string, checked: boolean) => {
-    if (checked) {
-      setFormData((prev) => ({
-        ...prev,
-        services: [...prev.services, service],
-      }))
-    } else {
-      setFormData((prev) => ({
-        ...prev,
-        services: prev.services.filter((s) => s !== service),
-      }))
+    setFormData((prev) => ({
+      ...prev,
+      services: checked
+        ? [...prev.services, service]
+        : prev.services.filter((s) => s !== service)
+    }));
+  };
+  // const handleSubmitService = async (e: FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+
+  //   const formData = new FormData(e.currentTarget);
+  //   const data = {
+  //     fullName: formData.get('qfullName'),
+  //     email: formData.get('qemail'),
+  //     phone: formData.get('qphone'),
+  //     address: formData.get('qaddress'),
+  //     services: formData.getAll('qservices'),
+  //     details: formData.get('qdetails'),
+  //   };
+
+  //   const res = await fetch('/api/quote', {
+  //     method: 'POST',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify(data),
+  //   });
+
+  //   const result = await res.json();
+  //   setStatus(result.message || result.error);
+  // };
+  
+  const handleSubmitService = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (!formData.token) {
+      setStatus("Please verify captcha before submitting.");
+      return;
     }
-  }
+
+    const payload = { ...formData };
+
+    const res = await fetch('/api/quote', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+
+    const result = await res.json();
+    setStatus(result.message || result.error);
+    recaptchaRef.current?.reset();
+  };
+
+
+  // const handleServiceChange = (service: string, checked: boolean) => {
+  //   if (checked) {
+  //     setFormData((prev) => ({
+  //       ...prev,
+  //       services: [...prev.services, service],
+  //     }))
+  //   } else {
+  //     setFormData((prev) => ({
+  //       ...prev,
+  //       services: prev.services.filter((s) => s !== service),
+  //     }))
+  //   }
+  // }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -108,7 +169,7 @@ export default function QuoteForm() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmitService} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <Label htmlFor="name">Full Name *</Label>
@@ -181,10 +242,15 @@ export default function QuoteForm() {
                     onChange={(e) => setFormData((prev) => ({ ...prev, message: e.target.value }))}
                   />
                 </div>
-
+                <ReCAPTCHA
+                    ref={recaptchaRef}
+                    onChange={(token) => setFormData((prev) => ({ ...prev, token }))}
+                    sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
+                  />
                 <Button type="submit" size="lg" className="w-full">
                   Get My Free Quote
                 </Button>
+                {status && <div className="text-green-500 text-center">{status}</div>}
               </form>
             </CardContent>
           </Card>
