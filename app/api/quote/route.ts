@@ -40,10 +40,13 @@ export async function POST(req: NextRequest) {
 
   try {
     await resend.emails.send({
-      from: 'onboarding@resend.dev', 
+      from: 'noreply@drclean.com.au', 
       to: 'ben@eronka.com',
       subject: 'New Quote Form Submission',
       replyTo: email,
+      headers: {
+        'List-Unsubscribe': '<mailto:unsubscribe@drclean.com.au>'
+      },
       html,
     });
 

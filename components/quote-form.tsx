@@ -47,6 +47,8 @@ export default function QuoteForm() {
   const recaptchaRef = useRef<ReCAPTCHA>(null);
   const [status, setStatus] = useState<string>("");
 
+  const [statusQuote, setStatusQuote] = useState<string>("");
+
   const [servicesStatus, setServiceStatus] = useState<string>("");
   const handleServiceChange = (service: string, checked: boolean) => {
     setFormData((prev) => ({
@@ -83,7 +85,7 @@ export default function QuoteForm() {
     e.preventDefault();
 
     if (!formData.token) {
-      setStatus("Please verify captcha before submitting.");
+      setStatusQuote("Please verify captcha before submitting.");
       return;
     }
 
@@ -96,7 +98,7 @@ export default function QuoteForm() {
     });
 
     const result = await res.json();
-    setStatus(result.message || result.error);
+    setStatusQuote(result.message || result.error);
     recaptchaRef.current?.reset();
   };
 
@@ -250,7 +252,7 @@ export default function QuoteForm() {
                 <Button type="submit" size="lg" className="w-full">
                   Get My Free Quote
                 </Button>
-                {status && <div className="text-green-500 text-center">{status}</div>}
+                {statusQuote && <div className="text-green-500 text-center">{statusQuote}</div>}
               </form>
             </CardContent>
           </Card>
@@ -298,7 +300,7 @@ export default function QuoteForm() {
 
                   <button type="submit" className="bg-blue-500 text-white p-2 rounded">Send</button>
 
-                  <div>{status}</div>
+                  {status && <div className="text-green-500 text-center">{status}</div>}
                 </form>
               </CardContent>
             </Card>
